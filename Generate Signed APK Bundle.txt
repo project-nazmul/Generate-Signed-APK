@@ -1,0 +1,50 @@
+1. android---->app---->src---->main--->AndroidManifest.xml---->
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+2. pubspec.yaml-----> version:1.0.1------> pub get
+
+3. android----> local.properties-----> 
+sdk.dir=C:\\Users\\Md-Nazmul-Khan\\AppData\\Local\\Android\\sdk
+flutter.sdk=C:\\src\\flutter
+flutter.buildMode=debug
+flutter.versionName=1.0.2
+flutter.versionCode=2
+
+4. android------->key.properties----->
+storePassword=123456
+keyPassword=123456
+keyAlias=key1
+storeFile=C:\\Users\\Md-Nazmul-Khan\\Desktop\\keystore.jks
+
+5. android----->build.gradle----->gradle: 4.2.2
+
+6. android----> app---->build.gradle----->
+flutterVersionCode = '1'
+flutterVersionName = '1.0.1'
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+buildTypes {
+    release {
+        signingConfig signingConfigs.release
+    }
+}
+
+7.Tools---->Flutter------>Open for Editing in Android Studio
+
+8.Build---->Generate signed APK
